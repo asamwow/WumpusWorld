@@ -212,7 +212,11 @@ namespace WumpusWorld
                             }
                             directionString += Char.ToLower(input[j]);
                         }
-                        return new Tuple<string, Position>(command, Position.Parse(directionString));
+                        Tuple<string, Position> returnInput = new Tuple<string, Position>(command, Position.Parse(directionString));
+                        if (returnInput.Item2 == Position.zero) {
+                            break;
+                        }
+                        return returnInput;
                     }
                     command += Char.ToLower(input[i]);
                 }
